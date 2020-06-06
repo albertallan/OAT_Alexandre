@@ -85,7 +85,7 @@ $vJuridica = PessoaJ::get_PessoaJ();
               <?= $objJuridica->mensagem ?>
             </td>
             <td>
-              <a href="?pagina=processamento/processar_pessoaJ&id_PessoaJ=<?= $objJuridica->id ?>" class="btn btn-info">Editar</a>
+              <a href="?pagina=processamento/atualizar_pessoaJ&id_PessoaJ=<?= $objJuridica->id ?>" class="btn btn-info">Editar</a>
             </td>
             <td>
               <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $objJuridica->id ?>">Excluir</a>

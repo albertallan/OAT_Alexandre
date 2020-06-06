@@ -44,11 +44,11 @@
             if($this->id === NULL){
                 $sql = "Insert into 
                         juridica(cnpj,nome,telefone,email,inscricao,razao,endereco,mensagem)
-                        values (:cpf,:nome,:telefone,:email,:inscricao,:razao,:endereco,:mensagem)";
+                        values (:cnpj,:nome,:telefone,:email,:inscricao,:razao,:endereco,:mensagem)";
 
                 if( $stmt = $link->prepare($sql) ){
                     
-                    $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
+                    $stmt->bindParam(":cnpj", $this->cnpj, PDO::PARAM_STR);
                     $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                     $stmt->bindParam(":telefone", $this->telefone, PDO::PARAM_STR);
                     $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
@@ -73,7 +73,7 @@
                         telefone=:telefone,
                         email=:email,
                         inscricao=:inscricao,
-                        razao=: razao,
+                        razao=:razao,
                         endereco=:endereco,
                         mensagem=:mensagem
                         where id = :id";
@@ -86,7 +86,7 @@
                     $stmt->bindParam(":telefone", $this->telefone, PDO::PARAM_INT);
                     $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
                     $stmt->bindParam(":inscricao", $this->inscricao, PDO::PARAM_INT);
-                    $stmt->bindParam("razao", $this->razao, PDO::PARAM_STR);
+                    $stmt->bindParam(":razao", $this->razao, PDO::PARAM_STR);
                     $stmt->bindParam(":endereco", $this->endereco, PDO::PARAM_STR);
                     $stmt->bindParam(":mensagem", $this->mensagem, PDO::PARAM_STR);
 
@@ -176,7 +176,7 @@
             
             $link = $objConexao->get_link();
 
-            $sql = "SELECT id,cpf,nome, telefone, email,inscricao,razao,endereco,mensagem from juridica where id = :id";
+            $sql = "SELECT id,cnpj,nome,telefone, email,inscricao,razao,endereco,mensagem from juridica where id = :id";
 
             $objJuridica = NULL;
 

@@ -81,7 +81,7 @@ $vFisica = PessoaF::get_PessoaF();
               <?= $objFisica->mensagem ?>
             </td>
             <td>
-              <a href="?pagina=processamento/processar_pessoaF&id_PessoaF=<?= $objFisica->id ?>" class="btn btn-info">Editar</a>
+              <a href="?pagina=processamento/atualizar_pessoaF&id_PessoaF=<?= $objFisica->id ?>" class="btn btn-info">Editar</a>
             </td>
             <td>
               <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal<?= $objFisica->id ?>">Excluir</a>
