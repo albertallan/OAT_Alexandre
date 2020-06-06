@@ -1,23 +1,25 @@
 <?php
 
-    class PessoaF{
+    class PessoaJ{
 
         private $id;
-        private $cpf;
+        private $cnpj;
         private $nome;
         private $telefone;
         private $email;
-        private $datanascimento;
+        private $inscricao;
+        private $razao;
         private $endereco;
         private $mensagem;
 
-        function __construct($id=NULL,$cpf="", $nome="", $telefone="", $email="",$datanascimento="",$endereco="", $mensagem=""){
+        function __construct($id=NULL,$cnpj="", $nome="", $telefone="", $email="",$inscricao="",$razao="",$endereco="", $mensagem=""){
             $this->id = $id;
-            $this->cpf = $cpf;
+            $this->cnpj = $cnpj;
             $this->nome = $nome;
             $this->telefone = $telefone;
             $this->email = $email;
-            $this->datanascimento = $datanascimento;
+            $this->inscricao = $inscricao;
+            $this->razao=$razao;
             $this->endereco = $endereco;
             $this->mensagem = $mensagem;
         }
@@ -41,8 +43,8 @@
 
             if($this->id === NULL){
                 $sql = "Insert into 
-                        fisica(cpf,nome,telefone,email,datanascimento,endereco,mensagem)
-                        values (:cpf,:nome,:telefone,:email,:datanascimento,:endereco,:mensagem)";
+                        juridica(cnpj,nome,telefone,email,inscricao,razao,endereco,mensagem)
+                        values (:cpf,:nome,:telefone,:email,:inscricao,:razao,:endereco,:mensagem)";
 
                 if( $stmt = $link->prepare($sql) ){
                     
@@ -50,7 +52,8 @@
                     $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                     $stmt->bindParam(":telefone", $this->telefone, PDO::PARAM_STR);
                     $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
-                    $stmt->bindParam(":datanascimento",$this->datanascimento, PDO::PARAM_STR);
+                    $stmt->bindParam(":inscricao",$this->inscricao, PDO::PARAM_STR);
+                    $stmt->bindParam(":razao", $this->razao, PDO::PARAM_STR);
                     $stmt->bindParam(":endereco", $this->endereco, PDO::PARAM_STR);
                     $stmt->bindParam(":mensagem", $this->mensagem, PDO::PARAM_STR);
 
@@ -64,12 +67,13 @@
                 }
             }
             else{
-                $sql = "Update fisica set
-                        cpf=:cpf, 
+                $sql = "Update juridica set
+                        cnpj=:cnpj, 
                         nome=:nome,
                         telefone=:telefone,
                         email=:email,
-                        datanascimento=:datanascimento,
+                        inscricao=:inscricao,
+                        razao=: razao,
                         endereco=:endereco,
                         mensagem=:mensagem
                         where id = :id";
@@ -77,11 +81,12 @@
                 if( $stmt = $link->prepare($sql) ){
                                     
                     $stmt->bindParam(":id", $this->id, PDO::PARAM_INT);
-                    $stmt->bindParam(":cpf", $this->cpf, PDO::PARAM_INT);
+                    $stmt->bindParam(":cnpj", $this->cnpj, PDO::PARAM_INT);
                     $stmt->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                     $stmt->bindParam(":telefone", $this->telefone, PDO::PARAM_INT);
                     $stmt->bindParam(":email", $this->email, PDO::PARAM_STR);
-                    $stmt->bindParam(":datanascimento", $this->datanascimento, PDO::PARAM_INT);
+                    $stmt->bindParam(":inscricao", $this->inscricao, PDO::PARAM_INT);
+                    $stmt->bindParam("razao", $this->razao, PDO::PARAM_STR);
                     $stmt->bindParam(":endereco", $this->endereco, PDO::PARAM_STR);
                     $stmt->bindParam(":mensagem", $this->mensagem, PDO::PARAM_STR);
 
@@ -102,7 +107,7 @@
             
             $link = $objConexao->get_link();
 
-            $sql = "DELETE FROM fisica WHERE id = :id";
+            $sql = "DELETE FROM juridica WHERE id = :id";
 
             if( $stmt = $link->prepare($sql) ){
                                     
@@ -118,42 +123,44 @@
             return FALSE;
         }
 
-        static function get_PessoaF(){
+        static function get_PessoaJ(){
             $objConexao = new ConexaoBD();
             
             $link = $objConexao->get_link();
 
-            $sql = "Select id,cpf,nome,telefone,email,datanascimento,endereco,mensagem from fisica";
+            $sql = "SELECT id,cnpj,nome,telefone,email,inscricao,razao,endereco,mensagem from juridica";
 
-            $vFisica = array();
+            $vJuridica = array();
 
             if( $stmt = $link->prepare($sql) ){
 
                 $stmt->execute();
 
                 $stmt->bindColumn('id', $id);
-                $stmt->bindColumn('cpf',$cpf);
+                $stmt->bindColumn('cnpj',$cnpj);
                 $stmt->bindColumn('nome', $nome);
                 $stmt->bindColumn('telefone', $telefone);
                 $stmt->bindColumn('email', $email);
-                $stmt->bindColumn('datanascimento',$datanascimento);
+                $stmt->bindColumn('inscricao',$inscricao);
+                $stmt->bindColumn('razao',$razao);
                 $stmt->bindColumn('endereco',$endereco);
                 $stmt->bindColumn('mensagem', $mensagem);
 
                 while( $stmt->fetch(PDO::FETCH_BOUND) ){
 
-                    $objFisica = new PessoaF(
+                    $objJuridica = new PessoaJ(
                         $id,
-                        $cpf,
+                        $cnpj,
                         $nome,
                         $telefone,
                         $email,
-                        $datanascimento,
+                        $inscricao,
+                        $razao,
                         $endereco,
                         $mensagem
                     );
     
-                    $vFisica[] = $objFisica;
+                    $vJuridica[] = $objJuridica;
 
                 }
 
@@ -161,17 +168,17 @@
                 $stmt->closeCursor();
             }
 
-            return $vFisica;
+            return $vJuridica;
         }
 
-        static function get_pessoaf_por_id($id){
+        static function get_pessoaj_por_id($id){
             $objConexao = new ConexaoBD();
             
             $link = $objConexao->get_link();
 
-            $sql = "SELECT id,cpf,nome, telefone, email,datanascimento,endereco,mensagem from fisica where id = :id";
+            $sql = "SELECT id,cpf,nome, telefone, email,inscricao,razao,endereco,mensagem from juridica where id = :id";
 
-            $objFisica = NULL;
+            $objJuridica = NULL;
 
             if( $stmt = $link->prepare($sql) ){
                                     
@@ -180,23 +187,25 @@
                 $stmt->execute();
 
                 $stmt->bindColumn('id', $id);
-                $stmt->bindColumn('cpf',$cpf);
+                $stmt->bindColumn('cnpj',$cnpj);
                 $stmt->bindColumn('nome', $nome);
                 $stmt->bindColumn('telefone', $telefone);
                 $stmt->bindColumn('email', $email);
-                $stmt->bindColumn('datanascimento',$datanascimento);
+                $stmt->bindColumn('inscricao',$inscricao);
+                $stmt->bindColumn('razao',$razao);
                 $stmt->bindColumn('endereco',$endereco);
                 $stmt->bindColumn('mensagem', $mensagem);
 
                 if( $stmt->fetch(PDO::FETCH_BOUND) ){
 
-                    $objFisica = new PessoaF(
+                    $objJuridica = new PessoaJ(
                         $id,
-                        $cpf,
+                        $cnpj,
                         $nome,
                         $telefone,
                         $email,
-                        $datanascimento,
+                        $inscricao,
+                        $razao,
                         $endereco,
                         $mensagem
                     );
@@ -206,7 +215,7 @@
                 $stmt->closeCursor();
             }
 
-            return $objFisica;
+            return $objJuridica;
         }
 
     }

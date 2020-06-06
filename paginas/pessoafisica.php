@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label>Endereço:</label>
-                        <input type="text" class="form-control" name="endereco" required placeholder="Digite seu Endereço" />
+                        <input type="text" class="form-control" name="endereco" required placeholder="Digite sua data de nascimento" />
                     </div>
                     <div class="form-group">
                         <label>Observações:</label>

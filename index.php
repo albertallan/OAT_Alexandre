@@ -3,7 +3,8 @@
 
 require("classes/conexao_bd.class.php");
 require("classes/contato.class.php");
-//require("classes/pessoaF.class.php");
+require("classes/pessoaF.class.php");
+require("classes/pessoaJ.class.php");
 
 $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
 
@@ -39,6 +40,8 @@ $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
                 <li><a href="?pagina=pessoafisica">CADASTRO DE PESSOA FISICA</a></li>
                 <li><a href="?pagina=pessoajuridica">CADASTRO DE PESSOA JURIDICA</a></li>
                 <li><a href="?pagina=processamento/contatosregistrados">REGISTRO DE CADASTROS</a></li>
+                <li><a href="?pagina=processamento/pessoaF_registradas">REGISTRO DE PESSOAS FISICAS</a></li>
+                <li><a href="?pagina=processamento/pessoaJ_registradas">REGISTRO DE PESSOAS JURIDICAS</a></li>
             </ul>
 
         </div>
