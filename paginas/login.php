@@ -1,12 +1,12 @@
 <?php
 
-if(isset($_POST['username'])){
+if(isset($_POST['nome'])){
 
     $objConexao = new ConexaoBD();
                 
     $link = $objConexao->get_link();
 
-    $sql = "SELECT id, first_name, last_name FROM usuario WHERE username = :username AND password = :password";
+    $sql = "SELECT id, nome, sobrenome FROM usuario WHERE username = :username AND password = :password";
 
     if( $stmt = $link->prepare($sql) ){
                                         
@@ -16,14 +16,14 @@ if(isset($_POST['username'])){
         $stmt->execute();
 
         $stmt->bindColumn('id', $id);
-        $stmt->bindColumn('first_name', $first_name);
-        $stmt->bindColumn('last_name', $last_name);
+        $stmt->bindColumn('nome', $nome);
+        $stmt->bindColumn('sobrenome', $sobrenome);
 
         if( $stmt->fetch(PDO::FETCH_BOUND) ){
 
             $_SESSION['id'] = $id;
-            $_SESSION['first_name'] = $first_name;
-            $_SESSION['last_name'] = $last_name;
+            $_SESSION['nome'] = $nome;
+            $_SESSION['sobrenome'] = $sobrenome;
 
             header("Location: ?pagina=area_restrita");
 

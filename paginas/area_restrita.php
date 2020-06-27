@@ -14,7 +14,8 @@ if(!isset($_SESSION['id'])){
 
         <h1>Área restrita</h1>
 
-        <p>Bem-vindo <?= $_SESSION['first_name'] ?> <?= $_SESSION['last_name'] ?></p>
+        <p>Bem-vindo <?= $_SESSION['nome'] ?> <?= $_SESSION['sobrenome'] ?>
+        </p>
 
     </div>
 

@@ -1,10 +1,11 @@
 <?php
 
-
 require("classes/conexao_bd.class.php");
 require("classes/contato.class.php");
 require("classes/pessoaF.class.php");
 require("classes/pessoaJ.class.php");
+require("classes/aluno.class.php");
+require("classes/membroLast.class.php");
 require("config/config.php");
 
 $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
@@ -34,19 +35,52 @@ $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
         </div>
     
         <div id="menu">
-
-            <ul>
-                <li><a href="?pagina=inicio">HOME</a></li>
-                <li><a href="?pagina=contato">CONTATO</a></li>
-                <li><a href="?pagina=pessoafisica">CADASTRO DE PESSOA FISICA</a></li>
-                <li><a href="?pagina=pessoajuridica">CADASTRO DE PESSOA JURIDICA</a></li>
-                <li><a href="?pagina=processamento/contatosregistrados">REGISTRO DE CADASTROS</a></li>
-                <li><a href="?pagina=processamento/pessoaF_registradas">REGISTRO DE PESSOAS FISICAS</a></li>
-                <li><a href="?pagina=processamento/pessoaJ_registradas">REGISTRO DE PESSOAS JURIDICAS</a></li>
-                <li><a href="?pagina=area_restrita">AREA RESTRITA</a></li>
-                <li><a href="?pagina=logout">LOGOUT</a></li>
-            </ul>
-
+            <div class="d-flex">
+                <div class="dropdown mr-1">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                    PAGINA INICIAL
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=inicio">HOME</a>
+                    <div class="dropdown-divider"></div>
+                    </div>
+                </div>
+                <div class="dropdown mr-1">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                    CADASTRO
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=contato">CADASTRO DE CONTATO</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=pessoafisica">CADASTRO DE PESSOA FISICA</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=pessoajuridica">CADASTRO DE PESSOA JURIDICA</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=aluno">CADASTRO DE ALUNO</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=membroLast">CADASTRO DE MEMBRO LAST</a>
+                    </div>
+                </div>
+                <div class="dropdown mr-1">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                    REGISTRO
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=processamento/contatosregistrados">REGISTRO DE CADASTROS</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=processamento/pessoaF_registradas">REGISTRO DE PESSOAS FISICAS</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=processamento/pessoaJ_registradas">REGISTRO DE PESSOAS JURIDICAS</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=processamento/alunos_registradas">REGISTRO DE ALUNOS</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=processamento/membroLast_registradas">REGISTRO DE MEMBROS LAST</a>
+                    </div>
+                </div>            
+            </div>
         </div>
         <div id="cols">
             <div id="col1">       
@@ -71,6 +105,6 @@ $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
 <script src="./js/jquery-3.4.1.slim.min.js"></script>
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha256-Kg2zTcFO9LXOc7IwcBx1YeUBJmekycsnTsq2RuFHSZU=" crossorigin="anonymous"></script>
+<script src="./js/jquery.mask.min.js"></script>
 </body>
 </html>
