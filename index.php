@@ -6,6 +6,7 @@ require("classes/pessoaF.class.php");
 require("classes/pessoaJ.class.php");
 require("classes/aluno.class.php");
 require("classes/membroLast.class.php");
+require("classes/funcao.class.php");
 require("config/config.php");
 
 $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
@@ -61,6 +62,8 @@ $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
                     <a class="dropdown-item" href="?pagina=aluno">CADASTRO DE ALUNO</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="?pagina=membroLast">CADASTRO DE MEMBRO LAST</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=funcao">CADASTRO DE FUNÇÕES</a>
                     </div>
                 </div>
                 <div class="dropdown mr-1">
@@ -78,6 +81,8 @@ $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
                     <a class="dropdown-item" href="?pagina=processamento/alunos_registradas">REGISTRO DE ALUNOS</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="?pagina=processamento/membroLast_registradas">REGISTRO DE MEMBROS LAST</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="?pagina=processamento/funcao_registradas">REGISTRO DE FUNÇÕES</a>
                     </div>
                 </div>            
             </div>
@@ -91,7 +96,7 @@ $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 'inicio';
                     include("./paginas/$pagina.php");
                     
                     ?>    
-
+                    
                 </div>
             </div>
         </div>
